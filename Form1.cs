@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,26 +13,34 @@ namespace raspisanie
 {
     public partial class Form1 : Form
     {
+        public static string connectionString = "Provider = Microsoft.ACE.OLEDB.12.0;Data Source = school.accdb";
+        private OleDbConnection myConnection;
+
         public Form1()
         {
             InitializeComponent();
+            myConnection= new OleDbConnection(connectionString);
+            myConnection.Open();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 form2=new Form2();
-            form2.ShowDialog();
+            Raspisanie.deleteacces = false;
+            Raspisanie raspisanie = new Raspisanie();
+            raspisanie.Show();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
-            form3.ShowDialog();
+            AddLesson addLesson = new AddLesson();
+            addLesson.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
